@@ -1,7 +1,7 @@
 require "./vizbor-cli/cmd"
 
-module VizborCli
+module VizborCLI
   VERSION = "0.1.0"
 
-  VizborCli.run
+  VizborCLI.run
 end
