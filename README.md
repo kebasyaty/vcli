@@ -1,6 +1,6 @@
-# Vizbor CLi
+# Vizbor CLI
 
-TODO: Write a description here
+Helper console application for the Vizbor project.
 
 <p>
   <a href="https://github.com/kebasyaty/vizbor-cli" alt="Status Project">
