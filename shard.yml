@@ -1,0 +1,13 @@
+name: vizbor-cli
+version: 0.1.0
+
+authors:
+  - kebasyaty <kebasyaty@gmail.com>
+
+targets:
+  vizbor-cli:
+    main: src/vizbor-cli.cr
+
+crystal: '>= 1.12.1'
+
+license: MIT
