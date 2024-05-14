@@ -2,12 +2,24 @@ name: vizbor-cli
 version: 0.1.0
 
 authors:
-  - kebasyaty <kebasyaty@gmail.com>
+  - Gennady Kostyunin <kebasyaty@gmail.com>
 
 targets:
   vizbor-cli:
     main: src/vizbor-cli.cr
 
-crystal: '>= 1.12.1'
+crystal: ">= 1.12.1, < 2.0"
 
 license: MIT
+
+description: |
+  Helper console application for the Vizbor project.
+
+homepage: https://github.com/kebasyaty/vizbor-cli
+repository: https://github.com/kebasyaty/vizbor-cli
+documentation: https://kebasyaty.github.io/vizbor-cli/
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+
