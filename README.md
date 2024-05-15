@@ -1,6 +1,6 @@
 # Vizbor CLI
 
-Helper console application for the <a href="https://github.com/kebasyaty/vizbor" alt="Vizbor">Vizbor</a> project.
+**Helper console application for the <a href="https://github.com/kebasyaty/vizbor" alt="Vizbor">Vizbor</a> project.**
 
 [![CI](https://github.com/kebasyaty/vizbor-cli/actions/workflows/specs.yml/badge.svg)](https://github.com/kebasyaty/vizbor-cli/actions/workflows/specs.yml")
 [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](LINK-TO-DOCUMENTATION)
