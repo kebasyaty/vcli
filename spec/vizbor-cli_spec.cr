@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe VizborCli do
+describe VizborCLI do
   it "works" do
     true.should eq(true)
   end
