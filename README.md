@@ -4,7 +4,7 @@ Helper console application for the Vizbor project.
 
 [![CI](https://github.com/kebasyaty/vizbor-cli/workflows/CI/badge.svg)](https://github.com/kebasyaty/vizbor-cli/actions)
 [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](LINK-TO-DOCUMENTATION)
-[![Crystal](https://img.shields.io/badge/crystal-v1.12%2B-CC342D)](https://crystal-lang.org/)
+[![Crystal](https://img.shields.io/badge/crystal-v1.12.1%2B-CC342D)](https://crystal-lang.org/)
 [![GitHub release](https://img.shields.io/github/release/kebasyaty/vizbor-cli)](https://github.com/kebasyaty/vizbor-cli/releases/)
 [![GitHub license](https://img.shields.io/github/license/kebasyaty/vizbor-cli)](https://github.com/kebasyaty/vizbor-cli/blob/main/LICENSE)
 [![GitHub repository](https://img.shields.io/badge/--ecebeb?logo=github&logoColor=000000)](https://github.com/kebasyaty/vizbor-cli)
