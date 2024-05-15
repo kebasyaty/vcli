@@ -2,7 +2,7 @@
 
 Helper console application for the Vizbor project.
 
-[![CI](https://github.com/kebasyaty/vizbor-cli/workflows/CI/badge.svg)](https://github.com/kebasyaty/vizbor-cli/actions)
+[![CI](https://github.com/kebasyaty/vizbor-cli/actions/workflows/specs.yml/badge.svg)](https://github.com/kebasyaty/vizbor-cli/actions/workflows/specs.yml")
 [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](LINK-TO-DOCUMENTATION)
 [![Crystal](https://img.shields.io/badge/crystal-v1.12.1%2B-CC342D)](https://crystal-lang.org/)
 [![GitHub release](https://img.shields.io/github/release/kebasyaty/vizbor-cli)](https://github.com/kebasyaty/vizbor-cli/releases/)
