@@ -14,11 +14,7 @@ module VizborCLI
     OptionParser.parse(args) do |parser|
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
-      parser.on("-i", "--init", "Initializing project.") do
-        puts "1.Create a file for Mongo driver options -> config/mongo/options.yml"
-        VizborCLI::Mongo.create_options_yaml
-        puts "Done"
-      end
+      parser.on("-i", "--init", "Initializing project.") { init_project }
       #
       parser.missing_option do |option_flag|
         STDERR.puts "ERROR: #{option_flag} is missing something."
@@ -41,6 +37,13 @@ module VizborCLI
 
   private def print_help(parser)
     puts parser
+    exit 0
+  end
+
+  private def init_project
+    puts "1.Create a file for Mongo driver options -> config/mongo/options.yml"
+    VizborCLI::Mongo.create_options_yaml
+    puts "Done"
     exit 0
   end
 end
