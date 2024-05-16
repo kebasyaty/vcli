@@ -1,4 +1,6 @@
+require "yaml"
 require "option_parser"
+require "cryomongo"
 
 module VizborCLI
   extend self
