@@ -1,6 +1,7 @@
 require "yaml"
 require "option_parser"
 require "cryomongo"
+require "./mongo"
 
 module VizborCLI
   extend self
@@ -13,6 +14,9 @@ module VizborCLI
     OptionParser.parse(args) do |parser|
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
+      parser.on("-i", "--init", "Initializing project.") do
+        VizborCLI::Mongo.create_options_yaml
+      end
       #
       parser.missing_option do |option_flag|
         STDERR.puts "ERROR: #{option_flag} is missing something."
