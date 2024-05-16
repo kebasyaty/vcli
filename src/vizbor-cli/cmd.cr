@@ -15,7 +15,7 @@ module VizborCLI
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
       parser.on("-i", "--init", "Initializing project.") do
-        puts "Create a file for Mongo driver options -> config/mongo/options.yml"
+        puts "1.Create a file for Mongo driver options -> config/mongo/options.yml"
         VizborCLI::Mongo.create_options_yaml
         puts "Done"
       end
