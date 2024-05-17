@@ -1,7 +1,9 @@
 require "yaml"
+require "colorize"
 require "option_parser"
 require "cryomongo"
-require "./mongo"
+require "./mongo_options"
+require "./app_state"
 
 module VizborCLI
   extend self
@@ -17,13 +19,13 @@ module VizborCLI
       parser.on("-i", "--init", "Initializing project.") { init_project }
       #
       parser.missing_option do |option_flag|
-        STDERR.puts "ERROR: #{option_flag} is missing something."
+        STDERR.puts "ERROR: #{option_flag} is missing something.".colorize.fore(:red).mode(:bold)
         STDERR.puts ""
         STDERR.puts parser
         exit 1
       end
       parser.invalid_option do |option_flag|
-        STDERR.puts "ERROR: #{option_flag} is not a valid option."
+        STDERR.puts "ERROR: #{option_flag} is not a valid option.".colorize.fore(:red).mode(:bold)
         STDERR.puts parser
         exit 1
       end
@@ -41,9 +43,17 @@ module VizborCLI
   end
 
   private def init_project
-    puts "1.Create a file for Mongo driver options -> config/mongo/options.yml"
-    VizborCLI::Mongo.create_options_yaml
-    puts "Done"
+    # Add an Mongo options file.
+    puts "1.Add a Mongo driver options file -> config/mongo/options.yml"
+      .colorize.fore(:yellow).mode(:bold)
+    VizborCLI::Mongo.add_mongo_options
+    # Add app settings file.
+    puts "2.Add a settings file for your application -> " \
+         "src/#{YAML.parse(File.read("shard.yml"))["name"].as_s}/settings.cr"
+      .colorize.fore(:yellow).mode(:bold)
+    VizborCLI::AppState.add_settings
+    # Successful completion.
+    puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
   end
 end

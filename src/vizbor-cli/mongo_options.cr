@@ -1,4 +1,3 @@
-# ???
 module VizborCLI::Mongo
   extend self
 
@@ -88,7 +87,7 @@ module VizborCLI::Mongo
     },
   }
 
-  def create_options_yaml : Nil
+  def add_mongo_options : Nil
     path = Path.new("config/mongo")
     unless Dir.exists?(path)
       Dir.mkdir_p(path)
