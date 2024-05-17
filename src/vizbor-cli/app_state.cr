@@ -50,6 +50,9 @@ module VizborCLI::AppState
                "  # Minimum 64 characters.\n" \
                "  class_getter secret_key : String = \"#{secret_key}\"\n" \
                "end\n"
+    path = Path.new("src/#{app_name}")
+    Dir.mkdir_p(path) unless Dir.exists?(path)
+    File.write(path, settings) unless File.file?(path)
   end
 
   def generate_unique_app_key : String
