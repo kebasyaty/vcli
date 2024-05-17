@@ -1,4 +1,3 @@
-# ???
 module VizborCLI::Mongo
   extend self
 
