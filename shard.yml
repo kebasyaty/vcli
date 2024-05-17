@@ -28,7 +28,8 @@ development_dependencies:
     github: crystal-ameba/ameba
 
 scripts:
-  postinstall: shards build -Dpreview_mt
+  postinstall: |
+    shards build --release
 
 executables:
   - vizbor-cli
