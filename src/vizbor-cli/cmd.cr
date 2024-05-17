@@ -19,13 +19,13 @@ module VizborCLI
       parser.on("-i", "--init", "Initializing project.") { init_project }
       #
       parser.missing_option do |option_flag|
-        STDERR.puts "ERROR: #{option_flag} is missing something."
+        STDERR.puts "ERROR: #{option_flag} is missing something.".colorize.fore(:red).mode(:bold)
         STDERR.puts ""
         STDERR.puts parser
         exit 1
       end
       parser.invalid_option do |option_flag|
-        STDERR.puts "ERROR: #{option_flag} is not a valid option."
+        STDERR.puts "ERROR: #{option_flag} is not a valid option.".colorize.fore(:red).mode(:bold)
         STDERR.puts parser
         exit 1
       end
@@ -48,7 +48,7 @@ module VizborCLI
     puts "2.Add a settings file for your application -> " \
          "src/#{YAML.parse(File.read("shard.yml"))["name"].as_s}/settings.cr"
     VizborCLI::AppState.add_settings
-    puts "Done"
+    puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
   end
 end
