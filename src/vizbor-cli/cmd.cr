@@ -43,13 +43,16 @@ module VizborCLI
   end
 
   private def init_project
+    # Add an options file.
     puts "1.Add a Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:yellow).mode(:bold)
     VizborCLI::Mongo.add_mongo_options
+    # Add a settings file.
     puts "2.Add a settings file for your application -> " \
          "src/#{YAML.parse(File.read("shard.yml"))["name"].as_s}/settings.cr"
       .colorize.fore(:yellow).mode(:bold)
     VizborCLI::AppState.add_settings
+    # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
   end
