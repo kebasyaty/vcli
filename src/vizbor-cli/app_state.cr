@@ -12,7 +12,7 @@ module VizborCLI::AppState
                "  # lot of useful information for debugging.\n" \
                "  class_getter? debug : Bool = true\n" \
                "  # Maximum 44 characters.\n" \
-               "  class_getter app_name : String = \"#{app_name.gsub("-") { "_" }.camelcase}\"" \
+               "  class_getter app_name : String = \"#{app_name.gsub("-") { "_" }.camelcase}\"\n" \
                "  # Match regular expression: /^[a-zA-Z0-9]{16}$/\n" \
                "  # To generate a key (This is not an advertisement): https://randompasswordgen.com/\n" \
                "  class_getter unique_app_key : String = \"#{generate_unique_app_key}\"\n" \
