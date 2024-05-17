@@ -30,6 +30,7 @@ development_dependencies:
 scripts:
   postinstall: |
     shards build --release
+    ln -s bin/vizbor-cli vizbor*
 
 executables:
   - vizbor-cli
