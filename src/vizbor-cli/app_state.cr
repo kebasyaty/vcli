@@ -4,7 +4,8 @@ module VizborCLI::AppState
   ADDITIONAL_SYMBOLS = "-._!\"`'#%&,:;<>=@{}~$()*+/?[]^|"
 
   def app_state : Nil
-    app_name = "AppName"
+    yaml = YAML.parse(File.read("shard.yml"))
+    app_name = yaml["name"].as_s
     unique_app_key = generate_unique_app_key
     secret_key = generate_secret_key
     settings = "# Settings for your web application.\n" \
@@ -14,7 +15,7 @@ module VizborCLI::AppState
                "  # lot of useful information for debugging.\n" \
                "  class_getter? debug : Bool = true\n" \
                "  # Maximum 44 characters.\n" \
-               "  class_getter app_name : String = \"#{app_name}\"" \
+               "  class_getter app_name : String = \"#{app_name.gsub("-") { "_" }.camelcase}\"" \
                "  # Match regular expression: /^[a-zA-Z0-9]{16}$/\n" \
                "  # To generate a key (This is not an advertisement): https://randompasswordgen.com/\n" \
                "  class_getter unique_app_key : String = \"#{unique_app_key}\"\n" \
