@@ -3,7 +3,8 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!\"`'#%&,:;<>=@{}~$()*+/?[]^|"
 
-  def app_state(app_name : String) : Nil
+  def app_state : Nil
+    app_name = "AppName"
     unique_app_key = generate_unique_app_key
     secret_key = generate_secret_key
     settings = "# Settings for your web application.\n" \
