@@ -1,7 +1,8 @@
 require "yaml"
+require "colorize"
 require "option_parser"
 require "cryomongo"
-require "./mongo"
+require "./mongo_options"
 require "./app_state"
 
 module VizborCLI
