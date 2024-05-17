@@ -4,10 +4,7 @@ module VizborCLI::AppState
   ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
   def add_settings : Nil
-    yaml = YAML.parse(File.read("shard.yml"))
-    app_name = yaml["name"].as_s
-    unique_app_key = generate_unique_app_key
-    secret_key = generate_secret_key
+    app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = "# Settings for your web application.\n" \
                "module Vizbor::Settings\n" \
                "  # If true,\n" \
@@ -18,7 +15,7 @@ module VizborCLI::AppState
                "  class_getter app_name : String = \"#{app_name.gsub("-") { "_" }.camelcase}\"" \
                "  # Match regular expression: /^[a-zA-Z0-9]{16}$/\n" \
                "  # To generate a key (This is not an advertisement): https://randompasswordgen.com/\n" \
-               "  class_getter unique_app_key : String = \"#{unique_app_key}\"\n" \
+               "  class_getter unique_app_key : String = \"#{generate_unique_app_key}\"\n" \
                "  # Maximum 60 characters.\n" \
                "  class_getter! database_name : String\n" \
                "  # https://github.com/crystal-i18n/i18n\n" \
@@ -48,7 +45,7 @@ module VizborCLI::AppState
                "  # Security\n" \
                "  # To generate a key (This is not an advertisement): https://randompasswordgen.com/\n" \
                "  # Minimum 64 characters.\n" \
-               "  class_getter secret_key : String = \"#{secret_key}\"\n" \
+               "  class_getter secret_key : String = \"#{generate_secret_key}\"\n" \
                "end\n"
     path = Path.new("src/#{app_name}")
     Dir.mkdir_p(path) unless Dir.exists?(path)
