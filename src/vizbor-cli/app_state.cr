@@ -3,7 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!\"`'#%&,:;<>=@{}~$()*+/?[]^|"
 
-  def app_state : Nil
+  def add_settings : Nil
     yaml = YAML.parse(File.read("shard.yml"))
     app_name = yaml["name"].as_s
     unique_app_key = generate_unique_app_key
