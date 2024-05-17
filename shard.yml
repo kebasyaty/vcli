@@ -1,4 +1,4 @@
-name: cli
+name: vizbor-cli
 version: 0.1.0
 
 authors:
@@ -31,4 +31,4 @@ scripts:
   postinstall: shards build --release
 
 executables:
-  - cli
+  - vizbor-cli
