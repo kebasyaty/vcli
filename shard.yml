@@ -1,4 +1,4 @@
-name: vizbor-cli
+name: cli
 version: 0.1.0
 
 authors:
@@ -28,9 +28,7 @@ development_dependencies:
     github: crystal-ameba/ameba
 
 scripts:
-  postinstall: |
-    shards build --release
-    cd ../../bin && ls -a
+  postinstall: shards build --release
 
 executables:
-  - vizbor-cli
+  - cli
