@@ -1,9 +1,11 @@
-module VizborCLI::Settings
+module VizborCLI::AppState
   extend self
+  ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  ADDITIONAL_SYMBOLS = "-._!\"`'#%&,:;<>=@{}~$()*+/?[]^|"
 
-  def app_settings(app_name : String) : Nil
-    unique_app_key = "5yh83a5yn7py97j8"
-    secret_key = "-H%QdH?ga$pLA39P2%86@KjArWp-G6$jA@Zk%nF2+jgZeKq8Wxf-sQL!_mh2wmKQ"
+  def app_state(app_name : String) : Nil
+    unique_app_key = generate_unique_app_key
+    secret_key = generate_secret_key
     settings = "# Settings for your web application.\n" \
                "module Vizbor::Settings\n" \
                "  # If true,\n" \
@@ -46,5 +48,31 @@ module VizborCLI::Settings
                "  # Minimum 64 characters.\n" \
                "  class_getter secret_key : String = \"#{secret_key}\"\n" \
                "end\n"
+  end
+
+  def generate_unique_app_key : String
+    result : String = ""
+    # Shuffle symbols in random order.
+    shuffled_chars : Array(String) = ALPHANUMERIC_CHARS.split("").shuffle
+    #
+    chars_count : Int32 = shuffled_chars.size - 1
+    size : Int32 = 16
+    size.times do
+      result += shuffled_chars[Random.rand(chars_count)]
+    end
+    result
+  end
+
+  def generate_secret_key : String
+    result : String = ""
+    # Shuffle symbols in random order.
+    shuffled_chars : Array(String) = (ALPHANUMERIC_CHARS + ADDITIONAL_SYMBOLS).split("").shuffle
+    #
+    chars_count : Int32 = shuffled_chars.size - 1
+    size : Int32 = 64
+    size.times do
+      result += shuffled_chars[Random.rand(chars_count)]
+    end
+    result
   end
 end
