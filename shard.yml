@@ -26,3 +26,10 @@ dependencies:
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
+
+scripts:
+  postinstall: |
+    shards build --production
+
+executables:
+  - vizbor-cli
