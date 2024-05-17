@@ -52,7 +52,7 @@ module VizborCLI::AppState
                "end\n"
     path = Path.new("src/#{app_name}")
     Dir.mkdir_p(path) unless Dir.exists?(path)
-    File.write(path, settings) unless File.file?(path)
+    File.write(path / "#{settings}.cr", settings) unless File.file?(path)
   end
 
   def generate_unique_app_key : String
