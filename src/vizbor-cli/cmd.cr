@@ -42,9 +42,9 @@ module VizborCLI
   end
 
   private def init_project
-    puts "1.Create a file for Mongo driver options -> config/mongo/options.yml"
+    puts "1.Add a Mongo driver options file -> config/mongo/options.yml"
     VizborCLI::Mongo.create_options_yaml
-    puts "2."
+    puts "2.Add a settings file for your application -> src/<app name>/settings.cr"
     VizborCLI::AppState.app_state
     puts "Done"
     exit 0
