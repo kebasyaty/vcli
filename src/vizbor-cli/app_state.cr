@@ -1,7 +1,7 @@
 module VizborCLI::AppState
   extend self
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  ADDITIONAL_SYMBOLS = "-._!\"`'#%&,:;<>=@{}~$()*+/?[]^|"
+  ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
   def add_settings : Nil
     yaml = YAML.parse(File.read("shard.yml"))
