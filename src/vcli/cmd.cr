@@ -64,6 +64,7 @@ module VizborCLI
         .colorize.fore(:red).mode(:bold)
       exit 1
     end
+    #
     puts "Start project initialization:".colorize.fore(:green).mode(:bold)
     # Add an Mongo options file.
     VizborCLI::MongoOptions.add_mongo_options
