@@ -62,6 +62,10 @@ module VizborCLI
          "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
     puts "  If necessary, correct the `app_name` parameter."
       .colorize.fore(:blue).mode(:bold)
+    # Add the main service `Admin`.
+    # ...
+    puts "Added the main service `Admin` -> src/#{app_name}/services/admin"
+      .colorize.fore(:yellow).mode(:bold)
     # Add `require "vizbor"` to the main project file.
     main_file : String = File.read("src/#{app_name}.cr")
     File.write("src/#{app_name}.cr", %Q(require "vizbor"\n\n#{main_file}))
