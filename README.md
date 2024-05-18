@@ -32,11 +32,17 @@
 
 ## Usage
 
-TODO: Write usage instructions here
+```crystal
+bin/vcli --help
+```
 
-## Development
+Return:
 
-TODO: Write development instructions here
+```text
+-v, --version     Print version
+-h, --help        Show this help
+-i, --init        Initialize project
+```
 
 ## Contributing
 
