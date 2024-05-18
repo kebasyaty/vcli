@@ -14,6 +14,7 @@ module VizborCLI
 
   def parse_args(args)
     OptionParser.parse(args) do |parser|
+      parser.banner = "Start project initialization."
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
       parser.on("-i", "--init", "Initialize project") { init_project }
