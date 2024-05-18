@@ -17,15 +17,20 @@ module VizborCLI
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
       parser.on("-i", "--init", "Initialize project") { init_project }
+      parser.on("-a NAME", "--add=NAME", "Add a new service") { add_service }
+      parser.on("-d NAME", "--delete=NAME", "Delete service") { delete_service }
+      parser.on("-r USERNAME", "--restore=USERNAME", "Restore access to admin panel") { restore_access }
       #
       parser.missing_option do |option_flag|
-        STDERR.puts "ERROR: #{option_flag} is missing something.".colorize.fore(:red).mode(:bold)
+        STDERR.puts "ERROR: #{option_flag} is missing something."
+          .colorize.fore(:red).mode(:bold)
         STDERR.puts ""
         STDERR.puts parser
         exit 1
       end
       parser.invalid_option do |option_flag|
-        STDERR.puts "ERROR: #{option_flag} is not a valid option.".colorize.fore(:red).mode(:bold)
+        STDERR.puts "ERROR: #{option_flag} is not a valid option."
+          .colorize.fore(:red).mode(:bold)
         STDERR.puts parser
         exit 1
       end
@@ -55,6 +60,18 @@ module VizborCLI
       .colorize.fore(:blue).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
+    exit 0
+  end
+
+  private def add_service
+    exit 0
+  end
+
+  private def delete_service
+    exit 0
+  end
+
+  private def restore_access
     exit 0
   end
 end
