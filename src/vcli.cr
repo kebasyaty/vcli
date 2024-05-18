@@ -1,7 +1,7 @@
 require "./vcli/cmd"
 
-module VCLI
+module VizborCLI
   VERSION = "0.1.0"
 
-  VCLI.run
+  VizborCLI.run
 end
