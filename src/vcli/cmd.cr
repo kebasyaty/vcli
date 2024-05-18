@@ -19,11 +19,7 @@ module VizborCLI
       parser.on("-i", "--init", "Initialize project") { init_project }
       parser.on("-a NAME", "--add=NAME", "Add a new service") { add_service }
       parser.on("-d NAME", "--delete=NAME", "Delete service") { delete_service }
-      parser.on(
-        "-r USERNAME",
-        "--restore-access=USERNAME",
-        "Restore access to admin panel",
-      ) { restore_access }
+      parser.on("-r USERNAME", "--restore=USERNAME", "Restore access to admin panel") { restore_access }
       #
       parser.missing_option do |option_flag|
         STDERR.puts "ERROR: #{option_flag} is missing something."
