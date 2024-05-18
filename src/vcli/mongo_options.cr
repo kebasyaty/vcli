@@ -1,4 +1,4 @@
-module VizborCLI::Mongo
+module VizborCLI::MongoOptions
   extend self
 
   alias RawMongoDriverOptions = NamedTuple(

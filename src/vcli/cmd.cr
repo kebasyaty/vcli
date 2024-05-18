@@ -44,7 +44,7 @@ module VizborCLI
 
   private def init_project
     # Add an Mongo options file.
-    VizborCLI::Mongo.add_mongo_options
+    VizborCLI::MongoOptions.add_mongo_options
     puts "1.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:yellow).mode(:bold)
     # Add app settings file.

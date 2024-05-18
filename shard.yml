@@ -5,7 +5,7 @@ authors:
   - Gennady Kostyunin <kebasyaty@gmail.com>
 
 targets:
-  vizbor-cli:
+  vcli:
     main: src/vcli.cr
 
 crystal: ">= 1.12.1, < 2.0"
