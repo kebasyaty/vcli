@@ -1,4 +1,4 @@
-require "./vizbor-cli/cmd"
+require "./vcli/cmd"
 
 module VizborCLI
   VERSION = "0.1.0"

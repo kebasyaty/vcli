@@ -1,4 +1,4 @@
-name: vizbor-cli
+name: vcli
 version: 0.1.0
 
 authors:
@@ -6,7 +6,7 @@ authors:
 
 targets:
   vizbor-cli:
-    main: src/vizbor-cli.cr
+    main: src/vcli.cr
 
 crystal: ">= 1.12.1, < 2.0"
 
@@ -15,9 +15,9 @@ license: MIT
 description: |
   Helper console application for the Vizbor project.
 
-homepage: https://github.com/kebasyaty/vizbor-cli
-repository: https://github.com/kebasyaty/vizbor-cli
-documentation: https://kebasyaty.github.io/vizbor-cli/
+homepage: https://github.com/kebasyaty/vcli
+repository: https://github.com/kebasyaty/vcli
+documentation: https://kebasyaty.github.io/vcli/
 
 dependencies:
   cryomongo:
@@ -31,4 +31,4 @@ scripts:
   postinstall: shards build --release
 
 executables:
-  - vizbor-cli
+  - vcli
