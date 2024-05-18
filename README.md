@@ -30,8 +30,6 @@
        github: kebasyaty/vcli
    ```
 
-2. Run `shards install`
-
 ## Usage
 
 TODO: Write usage instructions here
