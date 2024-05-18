@@ -20,10 +20,10 @@ module VizborCLI
       parser.on("-a NAME", "--add=NAME", "Add a new service") { |name| add_service(name) }
       parser.on("-d NAME", "--delete=NAME", "Delete service") { |name| delete_service(name) }
       parser.on(
-        "-r USERNAME",
-        "--restore=USERNAME",
+        "-r TOKEN",
+        "--restore=TOKEN",
         "Restore access to admin panel",
-      ) { |username| restore_access(username) }
+      ) { |token| restore_access(token) }
       #
       parser.missing_option do |option_flag|
         STDERR.puts "ERROR: #{option_flag} is missing something."
@@ -80,7 +80,8 @@ module VizborCLI
     exit 0
   end
 
-  private def restore_access(username : String)
+  private def restore_access(token : String)
+    # token - username or email
     exit 0
   end
 end
