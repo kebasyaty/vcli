@@ -1,2 +1,2 @@
 require "spec"
-require "../src/vizbor-cli"
+require "../src/vcli"
