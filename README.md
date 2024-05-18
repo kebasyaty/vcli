@@ -39,9 +39,11 @@ bin/vcli --help
 Return:
 
 ```text
--v, --version     Print version
--h, --help        Show this help
--i, --init        Initialize project
+-v, --version              Print version
+-h, --help                 Show this help
+-i, --init                 Initialize project
+-a NAME, --add=NAME        Add a new service
+-d NAME, --delete=NAME     Delete a service
 ```
 
 ## Contributing
