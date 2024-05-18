@@ -17,9 +17,13 @@ module VizborCLI
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
       parser.on("-i", "--init", "Initialize project") { init_project }
-      parser.on("-a NAME", "--add=NAME", "Add a new service") { add_service }
-      parser.on("-d NAME", "--delete=NAME", "Delete service") { delete_service }
-      parser.on("-r USERNAME", "--restore=USERNAME", "Restore access to admin panel") { restore_access }
+      parser.on("-a NAME", "--add=NAME", "Add a new service") { |name| add_service(name) }
+      parser.on("-d NAME", "--delete=NAME", "Delete service") { |name| delete_service(name) }
+      parser.on(
+        "-r USERNAME",
+        "--restore=USERNAME",
+        "Restore access to admin panel",
+      ) { |username| restore_access(username) }
       #
       parser.missing_option do |option_flag|
         STDERR.puts "ERROR: #{option_flag} is missing something."
@@ -63,15 +67,15 @@ module VizborCLI
     exit 0
   end
 
-  private def add_service
+  private def add_service(name : String)
     exit 0
   end
 
-  private def delete_service
+  private def delete_service(name : String)
     exit 0
   end
 
-  private def restore_access
+  private def restore_access(username : String)
     exit 0
   end
 end
