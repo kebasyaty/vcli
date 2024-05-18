@@ -26,7 +26,7 @@
 
    ```yaml
    development_dependencies:
-     vizbor:
+     vcli:
        github: kebasyaty/vcli
    ```
 
