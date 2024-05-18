@@ -16,7 +16,7 @@ module VizborCLI
     OptionParser.parse(args) do |parser|
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
-      parser.on("--init", "Initialize project") { init_project }
+      parser.on("--init APP_NAME", "Initialize project") { |app_name| init_project(app_name) }
       parser.on("--add NAME", "Add a new service") { |name| add_service(name) }
       parser.on("--delete NAME", "Delete service") { |name| delete_service(name) }
       parser.on(
@@ -50,14 +50,27 @@ module VizborCLI
     exit 0
   end
 
-  private def init_project
+  private def init_project(db_app_name : String)
+    # NOTE: db_app_name - will be used for the database name + unique_app_key
+    #
+    if db_app_name.size > 44
+      STDERR.puts "ERROR: APP_NAME - Maximum 44 characters."
+        .colorize.fore(:red).mode(:bold)
+      exit 1
+    end
+    unless /^[a-zA-Z][-_a-zA-Z0-9]{0,43}$/.matches?(db_app_name)
+      STDERR.puts "ERROR: APP_NAME - " \
+                  "Doesn't match regular expression /^[a-zA-Z][-_a-zA-Z0-9]{0.43}$/"
+        .colorize.fore(:red).mode(:bold)
+      exit 1
+    end
     puts "Start project initialization:".colorize.fore(:green).mode(:bold)
     # Add an Mongo options file.
     VizborCLI::MongoOptions.add_mongo_options
     puts "1.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:yellow).mode(:bold)
     # Add app settings file.
-    app_name = VizborCLI::AppState.add_settings
+    app_name = VizborCLI::AppState.add_settings(db_app_name)
     puts "2.Added settings file for your application -> " \
          "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
     puts "  If necessary, correct the `app_name` parameter."
