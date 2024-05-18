@@ -41,7 +41,7 @@ Return:
 ```text
 -v, --version     Print version
 -h, --help        Show this help
--i, --init        Initializing project
+-i, --init        Initialize project
 ```
 
 ## Contributing
