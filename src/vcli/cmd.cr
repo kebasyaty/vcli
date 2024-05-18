@@ -14,7 +14,6 @@ module VizborCLI
 
   def parse_args(args)
     OptionParser.parse(args) do |parser|
-      parser.banner = "Start project initialization."
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
       parser.on("-i", "--init", "Initialize project") { init_project }
@@ -53,6 +52,7 @@ module VizborCLI
   end
 
   private def init_project
+    puts "Start project initialization:".colorize.fore(:green).mode(:bold)
     # Add an Mongo options file.
     VizborCLI::MongoOptions.add_mongo_options
     puts "1.Added Mongo driver options file -> config/mongo/options.yml"
