@@ -1,2 +1,2 @@
 - [ameba](https://github.com/crystal-ameba/ameba "ameba")
-
+- [cryomongo](https://github.com/elbywan/cryomongo "cryomongo")

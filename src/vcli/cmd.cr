@@ -17,6 +17,8 @@ module VizborCLI
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
       parser.on("-i", "--init", "Initialize project") { init_project }
+      parser.on("-a NAME", "--add=NAME", "Add a new service") { add_service }
+      parser.on("-d NAME", "--delete=NAME", "Add a new service") { delete_service }
       #
       parser.missing_option do |option_flag|
         STDERR.puts "ERROR: #{option_flag} is missing something.".colorize.fore(:red).mode(:bold)
@@ -55,6 +57,14 @@ module VizborCLI
       .colorize.fore(:blue).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
+    exit 0
+  end
+
+  private def add_service
+    exit 0
+  end
+
+  private def delete_service
     exit 0
   end
 end
