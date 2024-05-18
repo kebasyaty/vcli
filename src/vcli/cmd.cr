@@ -44,14 +44,15 @@ module VizborCLI
 
   private def init_project
     # Add an Mongo options file.
-    puts "1.Add a Mongo driver options file -> config/mongo/options.yml"
-      .colorize.fore(:yellow).mode(:bold)
     VizborCLI::Mongo.add_mongo_options
-    # Add app settings file.
-    puts "2.Add a settings file for your application -> " \
-         "src/#{YAML.parse(File.read("shard.yml"))["name"].as_s}/settings.cr"
+    puts "1.Added a Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:yellow).mode(:bold)
-    VizborCLI::AppState.add_settings
+    # Add app settings file.
+    app_name = VizborCLI::AppState.add_settings
+    puts "2.Add a settings file for your application -> " \
+         "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
+    puts "If necessary, correct the `app_name` parameter."
+      .colorize.fore(:yellow).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0

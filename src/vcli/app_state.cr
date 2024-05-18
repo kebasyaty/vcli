@@ -3,7 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
-  def add_settings : Nil
+  def add_settings : String
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = "# Settings for your web application.\n" \
                "module Vizbor::Settings\n" \
@@ -50,6 +50,7 @@ module VizborCLI::AppState
     path = Path.new("src/#{app_name}")
     Dir.mkdir_p(path) unless Dir.exists?(path)
     File.write(path / "settings.cr", settings) unless File.file?(path)
+    app_name
   end
 
   def generate_unique_app_key : String
