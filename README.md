@@ -39,12 +39,12 @@ bin/vcli --help
 Return:
 
 ```text
--v, --version                    Print version
--h, --help                       Show this help
--i, --init                       Initialize project
--a NAME, --add=NAME              Add a new service
--d NAME, --delete=NAME           Delete service
--r USERNAME, --restore=USERNAME  Restore access to admin panel
+-v, --version                 Print version
+-h, --help                    Show this help
+-i, --init                    Initialize project
+-a NAME, --add=NAME           Add a new service
+-d NAME, --delete=NAME        Delete service
+-r TOKEN, --restore=TOKEN     Restore access to admin panel
 ```
 
 ## Contributing
