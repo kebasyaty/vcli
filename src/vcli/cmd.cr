@@ -12,7 +12,7 @@ module VizborCLI
     parse_args args
   end
 
-  def parse_args(args)
+  private def parse_args(args)
     OptionParser.parse(args) do |parser|
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
