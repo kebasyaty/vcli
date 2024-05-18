@@ -74,15 +74,18 @@ module VizborCLI
   end
 
   private def add_service(name : String)
+    puts name
     exit 0
   end
 
   private def delete_service(name : String)
+    puts name
     exit 0
   end
 
   private def restore_access(token : String)
     # token - username or email
+    puts token
     exit 0
   end
 end
