@@ -47,6 +47,8 @@ Return:
 -r TOKEN, --restore=TOKEN     Restore access to admin panel
 ```
 
+`token - username or email`
+
 ## Contributing
 
 1. Fork it (<https://github.com/kebasyaty/vcli/fork>)
