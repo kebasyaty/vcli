@@ -78,12 +78,12 @@ module VizborCLI
       .colorize.fore(:blue).mode(:bold)
     # Add the main service `Admin`.
     # ...
-    puts "Added the main service `Admin` -> src/#{app_name}/services/admin"
+    puts "3.Added the main service `Admin` -> src/#{app_name}/services/admin"
       .colorize.fore(:yellow).mode(:bold)
     # Add `require "vizbor"` to the main project file.
     main_file : String = File.read("src/#{app_name}.cr")
     File.write("src/#{app_name}.cr", %Q(require "vizbor"\n\n#{main_file}))
-    puts %Q(Added `require "vizbor"` to the main project file -> src/#{app_name}.cr)
+    puts %Q(4.Added `require "vizbor"` to the main project file -> src/#{app_name}.cr)
       .colorize.fore(:yellow).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
