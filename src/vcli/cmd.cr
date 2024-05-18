@@ -5,7 +5,7 @@ require "cryomongo"
 require "./mongo_options"
 require "./app_state"
 
-module VizborCLI
+module VCLI
   extend self
 
   def run(args = ARGV) : Nil
@@ -44,11 +44,11 @@ module VizborCLI
 
   private def init_project
     # Add an Mongo options file.
-    VizborCLI::Mongo.add_mongo_options
+    VCLI::Mongo.add_mongo_options
     puts "1.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:yellow).mode(:bold)
     # Add app settings file.
-    app_name = VizborCLI::AppState.add_settings
+    app_name = VCLI::AppState.add_settings
     puts "2.Added settings file for your application -> " \
          "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
     puts "  If necessary, correct the `app_name` parameter."
