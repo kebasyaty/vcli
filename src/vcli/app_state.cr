@@ -3,7 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
-  def add_settings : String
+  def add_settings(camelcase_app_name : String) : String
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = "# Settings for your web application.\n" \
                "module Vizbor::Settings\n" \
@@ -12,7 +12,7 @@ module VizborCLI::AppState
                "  # lot of useful information for debugging.\n" \
                "  class_getter? debug : Bool = true\n" \
                "  # Maximum 44 characters.\n" \
-               "  class_getter app_name : String = \"#{app_name.gsub("-") { "_" }.camelcase}\"\n" \
+               "  class_getter app_name : String = \"#{camelcase_app_name}\"\n" \
                "  # Match regular expression: /^[a-zA-Z0-9]{16}$/\n" \
                "  # To generate a key (This is not an advertisement): https://randompasswordgen.com/\n" \
                "  class_getter unique_app_key : String = \"#{generate_unique_app_key}\"\n" \
