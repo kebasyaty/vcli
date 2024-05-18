@@ -62,6 +62,9 @@ module VizborCLI
          "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
     puts "  If necessary, correct the `app_name` parameter."
       .colorize.fore(:blue).mode(:bold)
+    # Add import of the `Vizbor` library to the main project file.
+    puts "Added import of Vizbor library into main project file -> src/#{app_name}.cr"
+      .colorize.fore(:yellow).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
