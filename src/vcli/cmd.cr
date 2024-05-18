@@ -16,12 +16,11 @@ module VizborCLI
     OptionParser.parse(args) do |parser|
       parser.on("-v", "--version", "Print version") { print_version }
       parser.on("-h", "--help", "Show this help") { print_help(parser) }
-      parser.on("-i", "--init", "Initialize project") { init_project }
-      parser.on("-a NAME", "--add=NAME", "Add a new service") { |name| add_service(name) }
-      parser.on("-d NAME", "--delete=NAME", "Delete service") { |name| delete_service(name) }
+      parser.on("--init", "Initialize project") { init_project }
+      parser.on("--add NAME", "Add a new service") { |name| add_service(name) }
+      parser.on("--delete NAME", "Delete service") { |name| delete_service(name) }
       parser.on(
-        "-r TOKEN",
-        "--restore=TOKEN",
+        "--restore TOKEN",
         "Restore access to admin panel",
       ) { |token| restore_access(token) }
       #
