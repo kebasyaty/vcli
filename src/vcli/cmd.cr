@@ -80,7 +80,7 @@ module VizborCLI
     puts "3.Added the main service `Admin` -> src/#{app_name}/services/admin"
       .colorize.fore(:yellow).mode(:bold)
     # Modify the main project file.
-    VizborCLI::MainFile.modify_main_file(app_name)
+    VizborCLI::MainFile.modify(app_name)
     puts "Modified the main project file -> src/#{app_name}.cr"
       .colorize.fore(:yellow).mode(:bold)
     # Successful completion.

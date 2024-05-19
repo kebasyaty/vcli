@@ -1,7 +1,7 @@
 module VizborCLI::MainFile
   extend self
 
-  def modify_main_file(app_name : String) : Nil
+  def modify(app_name : String) : Nil
     path = Path.new("src/#{app_name}.cr")
     main_file : String = File.read(path)
     check_main_file(main_file, app_name)
