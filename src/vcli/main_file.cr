@@ -2,14 +2,23 @@ module VizborCLI::MainFile
   extend self
 
   def modify_main_file(app_name : String) : Nil
-    main_file : String = File.read("src/#{app_name}.cr")
-    main_file_arr = main_file.split("\n")
+    path = Path.new("src/#{app_name}.cr")
+    main_file : String = File.read(path)
+    check_main_file(main_file)
+    arr = main_file.split("\n")
     import = "require \"vizbor\"\n" \
              "require \"./#{app_name}/settings\"\n" \
              "require \"./#{app_name}/services/**\"\n\n"
-    main_file_arr[0] = import
-    main_file_arr[4] = "  # Start Web Server.\n" \
-                       "  Vizbor::Server.run"
-    File.write("src/#{app_name}.cr", "#{import}\n\n#{main_file}")
+    arr[0] = import
+    arr[4] = "  # Start Web Server.\n" \
+             "  Vizbor::Server.run"
+    File.write(path, arr.join)
+  end
+
+  private def check_main_file(main_file : String) : Nil
+    if main_file.empty?
+      puts "The main project file must not be empty!"
+      exit 1
+    end
   end
 end
