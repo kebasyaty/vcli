@@ -21,7 +21,7 @@ module VizborCLI::GitIgnore
 
 # Editor directories and files
 .idea
-.vscode
+#.vscode
 *.suo
 *.ntvs*
 *.njsproj
