@@ -4,6 +4,7 @@ require "option_parser"
 require "cryomongo"
 require "./mongo_options"
 require "./app_state"
+require "./main_file"
 
 module VizborCLI
   extend self
@@ -78,10 +79,9 @@ module VizborCLI
     # ...
     puts "3.Added the main service `Admin` -> src/#{app_name}/services/admin"
       .colorize.fore(:yellow).mode(:bold)
-    # Add `require "vizbor"` to the main project file.
-    main_file : String = File.read("src/#{app_name}.cr")
-    File.write("src/#{app_name}.cr", %Q(require "vizbor"\n\n#{main_file}))
-    puts %Q(4.Added `require "vizbor"` to the main project file -> src/#{app_name}.cr)
+    # Modify the main project file.
+    VizborCLI::MainFile.modify_main_file(app_name)
+    puts "Modified the main project file -> src/#{app_name}.cr"
       .colorize.fore(:yellow).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
