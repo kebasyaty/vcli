@@ -3,7 +3,6 @@ module VizborCLI::GitIgnore
 
   def modify : Nil
     path = Path.new(".gitignore")
-    file : String = File.read(path)
     File.write(path, content)
   end
 
