@@ -74,8 +74,6 @@ module VizborCLI
     app_name = VizborCLI::AppState.add_settings(db_app_name)
     puts "2.Added settings file for your application -> " \
          "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
-    puts "  If necessary, correct the `app_name` parameter."
-      .colorize.fore(:blue).mode(:bold)
     # Add the main service `Admin`.
     # ...
     puts "3.Added the main service `Admin` -> src/#{app_name}/services/admin"
