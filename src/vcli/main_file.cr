@@ -7,11 +7,11 @@ module VizborCLI::MainFile
     check_main_file(main_file, app_name)
     arr = main_file.split("\n")
     import = "require \"vizbor\"\n" \
-             "require \"./#{app_name}/**\"\n\n"
+             "require \"./#{app_name}/**\"\n"
     arr[0] = import
-    arr[4] = "\n\n  # Start Web Server.\n" \
-             "  Vizbor::Server.run\n"
-    File.write(path, arr.join)
+    arr[4] = "\n  # Start Web Server.\n" \
+             "  Vizbor::Server.run"
+    File.write(path, arr.join("\n") + "\n")
   end
 
   private def check_main_file(main_file : String, app_name : String) : Nil
