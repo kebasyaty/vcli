@@ -7,8 +7,7 @@ module VizborCLI::MainFile
     check_main_file(main_file, app_name)
     arr = main_file.split("\n")
     import = "require \"vizbor\"\n" \
-             "require \"./#{app_name}/settings\"\n" \
-             "require \"./#{app_name}/services/**\"\n\n"
+             "require \"./#{app_name}/**\"\n\n"
     arr[0] = import
     arr[4] = "\n\n  # Start Web Server.\n" \
              "  Vizbor::Server.run\n"
