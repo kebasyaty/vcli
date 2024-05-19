@@ -28,7 +28,7 @@ development_dependencies:
     github: crystal-ameba/ameba
 
 scripts:
-  postinstall: shards build --progress --release --no-debug
+  postinstall: shards build --release
 
 executables:
   - vcli
