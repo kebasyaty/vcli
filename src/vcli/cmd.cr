@@ -4,6 +4,8 @@ require "option_parser"
 require "cryomongo"
 require "./mongo_options"
 require "./app_state"
+require "./main_file"
+require "./gitignore"
 
 module VizborCLI
   extend self
@@ -74,17 +76,17 @@ module VizborCLI
     app_name = VizborCLI::AppState.add_settings(db_app_name)
     puts "2.Added settings file for your application -> " \
          "src/#{app_name}/settings.cr".colorize.fore(:yellow).mode(:bold)
-    puts "  If necessary, correct the `app_name` parameter."
-      .colorize.fore(:blue).mode(:bold)
     # Add the main service `Admin`.
     # ...
     puts "3.Added the main service `Admin` -> src/#{app_name}/services/admin"
       .colorize.fore(:yellow).mode(:bold)
-    # Add `require "vizbor"` to the main project file.
-    main_file : String = File.read("src/#{app_name}.cr")
-    File.write("src/#{app_name}.cr", %Q(require "vizbor"\n\n#{main_file}))
-    puts %Q(4.Added `require "vizbor"` to the main project file -> src/#{app_name}.cr)
+    # Modify the main project file.
+    VizborCLI::MainFile.modify(app_name)
+    puts "Modified the main project file -> src/#{app_name}.cr"
       .colorize.fore(:yellow).mode(:bold)
+    # Modify the .gitignore file.
+    VizborCLI::GitIgnore.modify
+    puts "Modified the .gitignore file.".colorize.fore(:yellow).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
