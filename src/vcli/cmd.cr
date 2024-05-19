@@ -5,6 +5,7 @@ require "cryomongo"
 require "./mongo_options"
 require "./app_state"
 require "./main_file"
+require "./gitignore"
 
 module VizborCLI
   extend self
@@ -83,6 +84,9 @@ module VizborCLI
     VizborCLI::MainFile.modify(app_name)
     puts "Modified the main project file -> src/#{app_name}.cr"
       .colorize.fore(:yellow).mode(:bold)
+    # Modify the .gitignore file.
+    VizborCLI::GitIgnore.modify
+    puts "Modified the .gitignore file.".colorize.fore(:yellow).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
