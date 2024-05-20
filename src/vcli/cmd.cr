@@ -1,6 +1,8 @@
 require "yaml"
 require "colorize"
 require "option_parser"
+require "http/client"
+require "compress/zip"
 require "cryomongo"
 require "./app_state"
 require "./main_file"
