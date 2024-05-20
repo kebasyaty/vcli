@@ -1,10 +1,14 @@
 require "yaml"
 require "colorize"
 require "option_parser"
+require "http/client"
+require "compress/zip"
 require "cryomongo"
+require "./mongo_options"
 require "./app_state"
 require "./main_file"
 require "./gitignore"
+require "./required_directories"
 
 module VizborCLI
   extend self
@@ -67,21 +71,29 @@ module VizborCLI
     end
     #
     puts "Start project initialization:".colorize.fore(:green).mode(:bold)
-    # Add app settings file.
-    app_name = VizborCLI::AppState.add_settings(db_app_name)
-    puts "1.Added settings file for your application -> " \
-         "src/#{app_name}/settings.cr".colorize.fore(:blue).mode(:bold)
-    # Add the main service `Admin`.
-    # ...
-    puts "2.Added the main service `Admin` -> src/#{app_name}/services/admin"
+    # Add an Mongo options file.
+    VizborCLI::MongoOptions.add
+    puts "1.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:blue).mode(:bold)
+    # Add app settings file.
+    app_name = VizborCLI::AppState.add db_app_name
+    puts "2.Added settings file for your application -> " \
+         "src/#{app_name}/settings.cr".colorize.fore(:blue).mode(:bold)
     # Modify the main project file.
-    VizborCLI::MainFile.modify(app_name)
+    VizborCLI::MainFile.modify app_name
     puts "3.Modified the main project file -> src/#{app_name}.cr"
       .colorize.fore(:blue).mode(:bold)
     # Modify the .gitignore file.
     VizborCLI::GitIgnore.modify
     puts "4.Modified the .gitignore file.".colorize.fore(:blue).mode(:bold)
+    # Add required directories.
+    VizborCLI::RequiredDirectories.add
+    puts "5.Added required directories. -> ???"
+      .colorize.fore(:blue).mode(:bold)
+    # Add the main service `Admin`.
+    # ...
+    puts "6.Added the main service `Admin` -> src/#{app_name}/services/admin"
+      .colorize.fore(:blue).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
