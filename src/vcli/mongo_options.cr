@@ -1,4 +1,4 @@
-# Mongo driver options.
+# Mongo Driver Options.
 module VizborCLI::MongoOptions
   extend self
 
