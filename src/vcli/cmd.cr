@@ -74,7 +74,12 @@ module VizborCLI
     VizborCLI::MongoOptions.add
     # Add required directories.
     VizborCLI::RequiredDirectories.add
-    puts "1.Added required directories. -> ???"
+    puts "1.Added required directories:\n" \
+         ".github\n" \
+         ".vscode\n" \
+         "assets\n" \
+         "config\n" \
+         "templates"
       .colorize.fore(:blue).mode(:bold)
     puts "2.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:blue).mode(:bold)
