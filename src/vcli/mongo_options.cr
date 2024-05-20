@@ -88,7 +88,7 @@ module VizborCLI::MongoOptions
     },
   }
 
-  def add_mongo_options : Nil
+  def add : Nil
     path = Path.new("config/mongo")
     unless Dir.exists?(path)
       Dir.mkdir_p(path)

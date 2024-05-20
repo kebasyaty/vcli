@@ -3,7 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
-  def add_settings(camelcase_app_name : String) : String
+  def add(db_app_name : String) : String
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = %Q(# Settings for your web application.
 module Vizbor::Settings
@@ -12,7 +12,7 @@ module Vizbor::Settings
   # lot of useful information for debugging.
   class_getter? debug : Bool = true
   # Maximum 44 characters.
-  class_getter app_name : String = "#{camelcase_app_name}"
+  class_getter app_name : String = "#{db_app_name}"
   # Match regular expression: /^[a-zA-Z0-9]{16}$/
   # To generate a key (This is not an advertisement): https://randompasswordgen.com/
   class_getter unique_app_key : String = "#{generate_unique_app_key}"
@@ -54,7 +54,7 @@ end
     app_name
   end
 
-  def generate_unique_app_key : String
+  private def generate_unique_app_key : String
     result : String = ""
     # Shuffle symbols in random order.
     shuffled_chars : Array(String) = ALPHANUMERIC_CHARS.split("").shuffle
@@ -67,7 +67,7 @@ end
     result
   end
 
-  def generate_secret_key : String
+  private def generate_secret_key : String
     result : String = ""
     # Shuffle symbols in random order.
     shuffled_chars : Array(String) = (ALPHANUMERIC_CHARS + ADDITIONAL_SYMBOLS).split("").shuffle
