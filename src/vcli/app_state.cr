@@ -17,7 +17,8 @@ module Vizbor::Settings
   # To generate a key (This is not an advertisement): https://randompasswordgen.com/
   class_getter unique_app_key : String = "#{generate_unique_app_key}"
   # Maximum 60 characters.
-  class_getter! database_name : String
+  # Hint: If the line is empty, the name will be generated automatically.
+  class_getter database_name : String = ""
   # https://github.com/crystal-i18n/i18n
   class_getter default_locale : Symbol = :en
   # Domain names.
