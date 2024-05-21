@@ -3,6 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
+  # Collect a file with settings and add it to the project.
   def add(db_app_name : String) : String
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = %Q(# Settings for your web application.
@@ -59,7 +60,6 @@ end
     result : String = ""
     # Shuffle symbols in random order.
     shuffled_chars : Array(String) = ALPHANUMERIC_CHARS.split("").shuffle
-    #
     chars_count : Int32 = shuffled_chars.size - 1
     size : Int32 = 16
     size.times do
@@ -71,8 +71,8 @@ end
   private def generate_secret_key : String
     result : String = ""
     # Shuffle symbols in random order.
-    shuffled_chars : Array(String) = (ALPHANUMERIC_CHARS + ADDITIONAL_SYMBOLS).split("").shuffle
-    #
+    shuffled_chars : Array(String) = (ALPHANUMERIC_CHARS + ADDITIONAL_SYMBOLS)
+      .split("").shuffle
     chars_count : Int32 = shuffled_chars.size - 1
     size : Int32 = 64
     size.times do
