@@ -104,10 +104,10 @@ module VizborCLI::MongoOptions
     end
   end
 
-  def mongo_driver_options : NamedTuple(uri: String, options: Mongo::Options)
+  # Generate driver options.
+  def generate_options : NamedTuple(uri: String, options: Mongo::Options)
     yaml : String = File.read("config/mongo/options.yml")
     raw_options = RawMongoDriverOptions.from_yaml(yaml)
-
     {
       uri:     raw_options.uri,
       options: Mongo::Options.new(
