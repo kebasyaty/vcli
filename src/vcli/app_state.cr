@@ -60,7 +60,6 @@ end
     result : String = ""
     # Shuffle symbols in random order.
     shuffled_chars : Array(String) = ALPHANUMERIC_CHARS.split("").shuffle
-    #
     chars_count : Int32 = shuffled_chars.size - 1
     size : Int32 = 16
     size.times do
@@ -74,7 +73,6 @@ end
     # Shuffle symbols in random order.
     shuffled_chars : Array(String) = (ALPHANUMERIC_CHARS + ADDITIONAL_SYMBOLS)
       .split("").shuffle
-    #
     chars_count : Int32 = shuffled_chars.size - 1
     size : Int32 = 64
     size.times do
