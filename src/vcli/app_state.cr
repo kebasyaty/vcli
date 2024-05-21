@@ -3,6 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
+  # Collect a file with settings and add it to the project.
   def add(db_app_name : String) : String
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = %Q(# Settings for your web application.
