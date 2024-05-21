@@ -1,6 +1,7 @@
 module VizborCLI::RequiredDirectories
   extend self
 
+  # Copy folders to the project root.
   def add : Nil
     directories = {
       "lib/vcli/directories/.github"   => ".github",
