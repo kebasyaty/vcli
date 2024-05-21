@@ -88,6 +88,7 @@ module VizborCLI::MongoOptions
     },
   }
 
+  # Collect a file with options and add it to the project.
   def add : Nil
     path = Path.new("config/mongo")
     unless Dir.exists?(path)
