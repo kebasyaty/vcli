@@ -46,7 +46,7 @@ module Vizbor::Settings
   class_getter secret_key : String = "#{Random::Secure.hex(64)}"
 
   def app_url : String
-    if @@debug
+    if @@debug?
       "http://" + @@domain_name + @@port.to_s
     else
       "https://" + @@domain_name
