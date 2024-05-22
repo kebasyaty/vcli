@@ -7,6 +7,7 @@ module VizborCLI::AppState
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = %Q(# Settings for your web application.
 module Vizbor::Settings
+  extend self
   # If true,
   # an exception page is rendered when an exception is raised which provides a
   # lot of useful information for debugging.
@@ -43,6 +44,14 @@ module Vizbor::Settings
   # To generate a key (This is not an advertisement): https://randompasswordgen.com/
   # Minimum 64 characters.
   class_getter secret_key : String = "#{Random::Secure.hex(64)}"
+  
+  def app_url : String
+    if @@debug
+      %Q(http://#{@@domain_name}:#{@@port})
+    else
+      %Q(https://#{@@domain_name})
+    end
+  end
 end
 )
     path = Path.new("src/#{app_name}")
