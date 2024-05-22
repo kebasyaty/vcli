@@ -1,7 +1,6 @@
 module VizborCLI::AppState
   extend self
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  ADDITIONAL_SYMBOLS = "-._!`'#%&,:;<>=@{}~$()*+/?[]^|"
 
   # Collect a file with settings and add it to the project.
   def add(db_app_name : String) : String
@@ -47,7 +46,7 @@ module Vizbor::Settings
   # Security
   # To generate a key (This is not an advertisement): https://randompasswordgen.com/
   # Minimum 64 characters.
-  class_getter secret_key : String = "#{generate_secret_key}"
+  class_getter secret_key : String = "#{Random::Secure.hex(64)}"
 end
 )
     path = Path.new("src/#{app_name}")
@@ -62,19 +61,6 @@ end
     shuffled_chars : Array(String) = ALPHANUMERIC_CHARS.split("").shuffle
     chars_count : Int32 = shuffled_chars.size - 1
     size : Int32 = 16
-    size.times do
-      result += shuffled_chars[Random.rand(chars_count)]
-    end
-    result
-  end
-
-  private def generate_secret_key : String
-    result : String = ""
-    # Shuffle symbols in random order.
-    shuffled_chars : Array(String) = (ALPHANUMERIC_CHARS + ADDITIONAL_SYMBOLS)
-      .split("").shuffle
-    chars_count : Int32 = shuffled_chars.size - 1
-    size : Int32 = 64
     size.times do
       result += shuffled_chars[Random.rand(chars_count)]
     end
