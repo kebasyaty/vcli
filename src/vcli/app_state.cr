@@ -7,6 +7,7 @@ module VizborCLI::AppState
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     settings = %Q(# Settings for your web application.
 module Vizbor::Settings
+  extend self
   # If true,
   # an exception page is rendered when an exception is raised which provides a
   # lot of useful information for debugging.
@@ -39,14 +40,18 @@ module Vizbor::Settings
   # You can add logging statements to your code:
   # Example: Log.info { "Log message with or without embedded \#{variables}" }
   class_getter? use_logging : Bool = true
-  # Maximum upload content size for a web form.
-  # 1 MB = 1048576 Bytes (in binary).
-  # Default: 1048576 * 2 = 2097152 = 2 MB
-  class_getter max_upload_size : Int32 = 2097152
   # Security
   # To generate a key (This is not an advertisement): https://randompasswordgen.com/
   # Minimum 64 characters.
   class_getter secret_key : String = "#{Random::Secure.hex(64)}"
+
+  def app_url : String
+    if @@debug
+      "http://" + @@domain_name + @@port.to_s
+    else
+      "https://" + @@domain_name
+    end
+  end
 end
 )
     path = Path.new("src/#{app_name}")
