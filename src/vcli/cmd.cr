@@ -78,9 +78,9 @@ module VizborCLI
     puts "1.Added required directories:\n" \
          "-> .github\n" \
          "-> .vscode\n" \
-         "->  assets\n" \
+         "->  public\n" \
          "->  config\n" \
-         "->  templates"
+         "->  views"
       .colorize.fore(:blue).mode(:bold)
     puts "2.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:blue).mode(:bold)
