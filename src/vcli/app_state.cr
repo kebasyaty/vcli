@@ -8,6 +8,7 @@ module VizborCLI::AppState
     settings = %Q(# Settings for your web application.
 module Vizbor::Settings
   extend self
+
   # If true,
   # an exception page is rendered when an exception is raised which provides a
   # lot of useful information for debugging.
@@ -22,10 +23,13 @@ module Vizbor::Settings
   class_getter database_name : String = ""
   # https://github.com/crystal-i18n/i18n
   class_getter default_locale : Symbol = :en
-  # Domain names.
-  class_getter domain_name : String = @@debug ? "0.0.0.0" : "www.your-site-name.net"
-  # Port for test server.
-  class_getter port : Int32 = 3000
+  # Security
+  # To generate a key (This is not an advertisement): https://randompasswordgen.com/
+  # Minimum 64 characters.
+  class_getter secret_key : String = "#{Random::Secure.hex(64)}"
+
+  # KEMAL PARAMETERS
+  # ----------------------------------------------------------------------------
   # Static File Options.
   # https://kemalcr.com/guide/
   # Example: {"gzip" => true, "dir_listing" => false}
@@ -38,19 +42,35 @@ module Vizbor::Settings
   # Use Logging?
   # https://kemalcr.com/guide/
   # You can add logging statements to your code:
-  # Example: Log.info { "Log message with or without embedded \#{variables}" }
+  # Example: Log.info { "Log message with or without embedded #{variables}" }
   class_getter? use_logging : Bool = true
-  # Security
-  # To generate a key (This is not an advertisement): https://randompasswordgen.com/
-  # Minimum 64 characters.
-  class_getter secret_key : String = "#{Random::Secure.hex(64)}"
 
-  def app_url : String
-    if @@debug
-      "http://" + @@domain_name + ":" + @@port.to_s
+  # URI Scheme
+  def scheme : String
+    if !@@debug
+      "https"
     else
-      "https://" + @@domain_name
+      "http"
     end
+  end
+
+  # URI Port
+  def port : Int32
+    3000
+  end
+
+  # URI Host - Domain name
+  def host : String
+    if !@@debug
+      "www.your-site-name.net"
+    else
+      "0.0.0.0" + ":" + port.to_s
+    end
+  end
+
+  # Application URL
+  def app_url : String
+    scheme + "://" + host
   end
 end
 )
