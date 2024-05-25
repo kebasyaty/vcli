@@ -42,7 +42,7 @@ module Vizbor::Settings
   # Use Logging?
   # https://kemalcr.com/guide/
   # You can add logging statements to your code:
-  # Example: Log.info { "Log message with or without embedded #{variables}" }
+  # Example: Log.info { "Log message with or without embedded \#{variables}" }
   class_getter? use_logging : Bool = true
 
   # URI Scheme
