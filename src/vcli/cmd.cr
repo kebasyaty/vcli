@@ -75,7 +75,7 @@ module VizborCLI
     # Add an Mongo options file.
     VizborCLI::MongoOptions.add
     # Add required directories.
-    VizborCLI::RequiredDirectories.add
+    VizborCLI::RequiredDirectories.add(app_name)
     puts "1.Added required directories:\n" \
          "-> .github\n" \
          "-> .vscode\n" \
