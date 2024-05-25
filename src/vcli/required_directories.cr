@@ -4,14 +4,14 @@ module VizborCLI::RequiredDirectories
   # Copy folders to the project root.
   def add(app_name : String) : Nil
     directories = {
-      "lib/vcli/directories/.github"  => ".github",
-      "lib/vcli/directories/.vscode"  => ".vscode",
-      "lib/vcli/directories/config"   => "config",
-      "lib/vcli/directories/public"   => "public",
-      "lib/vcli/directories/views"    => "views",
-      "lib/vcli/directories/services" => "src/#{app_name}/services",
-      "directories/middleware.cr"     => "src/#{app_name}/middleware.cr",
-      "directories/routes.cr"         => "src/#{app_name}/routes.cr",
+      "lib/vcli/directories/.github"       => ".github",
+      "lib/vcli/directories/.vscode"       => ".vscode",
+      "lib/vcli/directories/config"        => "config",
+      "lib/vcli/directories/public"        => "public",
+      "lib/vcli/directories/views"         => "views",
+      "lib/vcli/directories/services"      => "src/#{app_name}/services",
+      "lib/vcli/directories/middleware.cr" => "src/#{app_name}/middleware.cr",
+      "lib/vcli/directories/routes.cr"     => "src/#{app_name}/routes.cr",
     }
 
     path = Path.new("src/#{app_name}")
