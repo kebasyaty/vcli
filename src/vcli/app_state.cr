@@ -3,8 +3,7 @@ module VizborCLI::AppState
   ALPHANUMERIC_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   # Collect a file with settings and add it to the project.
-  def add(db_app_name : String) : String
-    app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
+  def add(app_name : String, db_app_name : String) : Nil
     settings = %Q(# Settings for your web application.
 module Vizbor::Settings
   extend self
@@ -77,7 +76,6 @@ end
     path = Path.new("src/#{app_name}")
     Dir.mkdir_p(path) unless Dir.exists?(path)
     File.write(path / "settings.cr", settings) unless File.file?(path)
-    app_name
   end
 
   private def generate_unique_app_key : String

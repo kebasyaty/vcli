@@ -71,37 +71,34 @@ module VizborCLI
     end
     #
     puts "Start project initialization:".colorize.fore(:green).mode(:bold)
+    app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     # Add an Mongo options file.
-    VizborCLI::MongoOptions.add
+    # VizborCLI::MongoOptions.add
     # Add required directories.
-    VizborCLI::RequiredDirectories.add
+    VizborCLI::RequiredDirectories.add(app_name)
     puts "1.Added required directories:\n" \
          "-> .github\n" \
          "-> .vscode\n" \
          "->  config\n" \
          "->  public\n" \
-         "->  services\n" \
          "->  views\n" \
-         "->  middleware\n" \
-         "->  routes"
+         "->  src/#{app_name}/services\n" \
+         "->  src/#{app_name}/middleware.cr\n" \
+         "->  src/#{app_name}/routes.cr"
       .colorize.fore(:blue).mode(:bold)
     puts "2.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:blue).mode(:bold)
     # Add app settings file.
-    app_name = VizborCLI::AppState.add db_app_name
+    VizborCLI::AppState.add(app_name, db_app_name)
     puts "3.Added settings file for your application -> " \
          "src/#{app_name}/settings.cr".colorize.fore(:blue).mode(:bold)
     # Modify the main project file.
     VizborCLI::MainFile.modify app_name
     puts "4.Modified the main project file -> src/#{app_name}.cr"
       .colorize.fore(:blue).mode(:bold)
-    # Add the main service `Admin`.
-    # ...
-    puts "5.Added the main service `Admin` -> src/#{app_name}/services/admin"
-      .colorize.fore(:blue).mode(:bold)
     # Modify the .gitignore file.
     VizborCLI::GitIgnore.modify
-    puts "6.Modified the .gitignore file.".colorize.fore(:blue).mode(:bold)
+    puts "5.Modified the .gitignore file.".colorize.fore(:blue).mode(:bold)
     # Successful completion.
     puts "Done".colorize.fore(:green).mode(:bold)
     exit 0
