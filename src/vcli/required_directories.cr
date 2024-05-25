@@ -14,6 +14,9 @@ module VizborCLI::RequiredDirectories
       "directories/routes.cr"         => "src/#{app_name}/routes.cr",
     }
 
+    path = Path.new("src/#{app_name}")
+    Dir.mkdir_p(path) unless Dir.exists?(path)
+
     directories.each do |src_path, dest_path|
       FileUtils.cp_r(src_path, dest_path)
     end
