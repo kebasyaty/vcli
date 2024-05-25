@@ -73,7 +73,7 @@ module VizborCLI
     puts "Start project initialization:".colorize.fore(:green).mode(:bold)
     app_name = YAML.parse(File.read("shard.yml"))["name"].as_s
     # Add an Mongo options file.
-    VizborCLI::MongoOptions.add
+    # VizborCLI::MongoOptions.add
     # Add required directories.
     VizborCLI::RequiredDirectories.add(app_name)
     puts "1.Added required directories:\n" \
