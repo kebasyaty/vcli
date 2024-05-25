@@ -6,7 +6,7 @@ module VizborCLI::RequiredDirectories
     directories = {
       "lib/vcli/directories/.github"   => ".github",
       "lib/vcli/directories/.vscode"   => ".vscode",
-      "lib/vcli/directories/assets"    => "assets",
+      "lib/vcli/directories/public"    => "public",
       "lib/vcli/directories/config"    => "config",
       "lib/vcli/directories/templates" => "templates",
     }

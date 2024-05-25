@@ -78,7 +78,7 @@ module VizborCLI
     puts "1.Added required directories:\n" \
          "-> .github\n" \
          "-> .vscode\n" \
-         "->  assets\n" \
+         "->  public\n" \
          "->  config\n" \
          "->  templates"
       .colorize.fore(:blue).mode(:bold)
