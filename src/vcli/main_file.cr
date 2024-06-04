@@ -9,8 +9,7 @@ module VizborCLI::MainFile
     import = "require \"vizbor\"\n" \
              "require \"./#{app_name}/**\"\n"
     arr[0] = import
-    arr[4] = "  # Start Web Server.\n" \
-             "  Vizbor::Server.run"
+    arr[4] = "  Vizbor::WebServer.run"
     File.write(path, arr.join("\n") + "\n")
   end
 
