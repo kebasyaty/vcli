@@ -1,11 +1,21 @@
 module Vizbor::Services::Admin::Routes
   # Admin panel page
   get "/admin" do |env|
-    env.redirect "/sign-in"
+    env.redirect "/admin/sign-in"
+  end
+
+  # Get language code
+  get "/admin/language-code" do |env|
+    language_code = {
+      language_code: Vizbor::Settings.default_locale,
+      msg_err:       "",
+    }.to_json
+    env.response.content_type = "application/json"
+    language_code
   end
 
   # Login page
-  get "/sign-in" do |env|
+  get "/admin/sign-in" do |env|
     if env.session.object?("user").nil?
       if Vizbor::Services::Admin::Models::User.estimated_document_count == 0
         # Create first user (administrator)
@@ -26,6 +36,6 @@ module Vizbor::Services::Admin::Routes
         end
       end
     end
-    render "views/admin/index.html"
+    send_file env, "views/admin/index.html"
   end
 end
