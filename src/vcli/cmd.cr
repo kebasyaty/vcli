@@ -8,7 +8,7 @@ require "./mongo_options"
 require "./app_state"
 require "./main_file"
 require "./gitignore"
-require "./required_directories"
+require "./donors"
 
 module VizborCLI
   extend self
@@ -75,7 +75,7 @@ module VizborCLI
     # Add an Mongo options file.
     # VizborCLI::MongoOptions.add
     # Add required directories.
-    VizborCLI::RequiredDirectories.add(app_name)
+    VizborCLI::Donors.add(app_name)
     puts "1.Added required directories:\n" \
          "-> .github\n" \
          "-> .vscode\n" \
