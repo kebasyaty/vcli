@@ -3,11 +3,6 @@ module Vizbor::BasicRoutes
     send_file env, "public/static/favicons/favicon.ico"
   end
 
-  get "/favicons/:icon" do |env|
-    icon = env.params.url["icon"]
-    send_file env, "public/static/favicons/#{icon}"
-  end
-
   get "/robots.txt" do |env|
     env.response.content_type = "text/plain"
     _host = "#{Vizbor::Settings.host}:#{Vizbor::Settings.port}"
@@ -26,7 +21,7 @@ module Vizbor::BasicRoutes
     render "views/sitemap.ecr"
   end
 
-  error 404 do
-    render "views/404.ecr"
+  error 404 do |env|
+    send_file env, "views/404.html"
   end
 end
