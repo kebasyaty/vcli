@@ -33,6 +33,7 @@
 ## Usage
 
 ```crystal
+shards install
 bin/vcli --help
 ```
 
@@ -47,7 +48,7 @@ Return:
 --restore TOKEN                  Restore access to admin panel
 ```
 
-`token - username or email`
+`TOKEN - username or email`
 
 ## Contributing
 
