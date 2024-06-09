@@ -34,17 +34,17 @@ module Vizbor::Services::Admin::Routes
 
   # Login
   post "/admin/login" do |env|
-    is_authenticated : Bool = false
-    msg_err : String = ""
+    authenticated? : Bool = false
+    lang_code : String = Vizbor::Settings.default_locale
     username : String = env.params.json["username"].as(String)
     password : String = env.params.json["password"].as(String)
 
     if !(user = env.session.object?("user")).nil?
+      user = user.as(Vizbor::Session::UserStorableObject)
       if username == user.username &&
          !user.hash.empty? && user.is_admin? && user.is_active?
-        is_authenticated = true
-      else
-        msg_err = I18n.t(:auth_failed)
+        lang_code = user.lang_code
+        authenticated? = true
       end
     else
       # Get user from database
@@ -55,33 +55,32 @@ module Vizbor::Services::Admin::Routes
           # Update last visit date
           user.last_login.refrash_val_datetime(Time.utc)
           if user.save
-            is_authenticated = true
+            authenticated? = true
           else
             user.print_err
-            msg_err = I18n.t(:auth_failed)
           end
           # Add user details to session
-          uso = UserStorableObject.new(
+          uso = Vizbor::Session::UserStorableObject.new(
             hash: user.hash.value,
             username: user.username.value,
             email: user.email.value,
             is_admin: user.is_admin.value,
             is_active: user.is_active.value,
+            lang_code: user.lang_code.value,
           )
           env.session.object("user", uso)
-        else
-          msg_err = I18n.t(:auth_failed)
         end
-      else
-        msg_err = I18n.t(:auth_failed)
       end
     end
 
-    result = {
-      username:         username,
-      is_authenticated: is_authenticated,
-      msg_err:          msg_err,
-    }.to_json
+    result : String? = nil
+    I18n.with_locale(lang_code) do
+      result = {
+        username:         username,
+        is_authenticated: authenticated?,
+        msg_err:          authenticated? ? "" : I18n.t(:auth_failed),
+      }.to_json
+    end
     env.response.content_type = "application/json"
     result
   end
