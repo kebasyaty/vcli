@@ -4,15 +4,14 @@ module VizborCLI::Donors
   # Copy folders to the project root.
   def add(app_name : String) : Nil
     donors = {
-      "lib/vcli/donors/github"        => ".github",
-      "lib/vcli/donors/vscode"        => ".vscode",
-      "lib/vcli/donors/config"        => "config",
-      "lib/vcli/donors/public"        => "public",
-      "lib/vcli/donors/views"         => "views",
-      "lib/vcli/donors/services"      => "src/#{app_name}/services",
-      "lib/vcli/donors/middleware.cr" => "src/#{app_name}/middleware.cr",
-      "lib/vcli/donors/routes.cr"     => "src/#{app_name}/routes.cr",
-      "lib/vcli/donors/session.cr"    => "src/#{app_name}/session.cr",
+      "lib/vcli/donors/github"          => ".github",
+      "lib/vcli/donors/vscode"          => ".vscode",
+      "lib/vcli/donors/config"          => "config",
+      "lib/vcli/donors/public"          => "public",
+      "lib/vcli/donors/views"           => "views",
+      "lib/vcli/donors/services"        => "src/#{app_name}/services",
+      "lib/vcli/donors/middleware"      => "src/#{app_name}/middleware",
+      "lib/vcli/donors/basic_routes.cr" => "src/#{app_name}/basic_routes.cr",
     }
 
     path = Path.new("src/#{app_name}")
