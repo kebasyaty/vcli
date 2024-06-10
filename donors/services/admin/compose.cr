@@ -24,4 +24,27 @@ module Vizbor::Services::Admin
       }
     end
   end
+
+  struct SiteParameters < Vizbor::Compose
+    def self.composition : Vizbor::Composition
+      # WARNING: Get icon name (for service) - https://materialdesignicons.com/
+      {
+        service:     {title: I18n.t(:site_parameters), icon: "cog"},
+        collections: [
+          {
+            title:     I18n.t(:parameters),
+            model_key: Vizbor::Services::Admin::Models::User.full_model_name,
+            fields:    [
+              {field: "brand", title: I18n.t(:brand)},
+              {field: "slogan", title: I18n.t(:slogan)},
+              {field: "meta_title", title: I18n.t(:meta_title)},
+              {field: "meta_description", title: I18n.t(:meta_description)},
+              {field: "email", title: I18n.t(:email)},
+              {field: "phone", title: I18n.t(:phone)},
+            ],
+          },
+        ],
+      }
+    end
+  end
 end

@@ -8,7 +8,6 @@ module Vizbor::Services::Admin::Routes
       user = user.as(Vizbor::Middleware::Session::UserStorableObject)
       if !user.username.empty? &&
          !user.hash.empty? && user.is_admin? && user.is_active?
-        lang_code = user.lang_code
         authenticated? = true
       end
     end
@@ -17,9 +16,6 @@ module Vizbor::Services::Admin::Routes
     I18n.with_locale(lang_code) do
       result = {
         is_authenticated: authenticated?,
-        logo:             "",
-        brand:            "Brand ???",
-        slogan:           "Slogan ???",
         service_list:     Vizbor::Compose.get,
         msg_err:          authenticated? ? "" : I18n.t(:auth_failed),
       }.to_json
