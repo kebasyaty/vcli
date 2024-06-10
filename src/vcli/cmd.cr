@@ -84,7 +84,7 @@ module VizborCLI
          "->  views\n" \
          "->  src/#{app_name}/services\n" \
          "->  src/#{app_name}/middleware\n" \
-         "->  src/#{app_name}/basic_routes.cr"
+         "->  src/#{app_name}/spices"
       .colorize.fore(:blue).mode(:bold)
     puts "2.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:blue).mode(:bold)
