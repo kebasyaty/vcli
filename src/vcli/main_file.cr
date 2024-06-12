@@ -7,7 +7,7 @@ module VizborCLI::MainFile
     check_main_file(main_file, app_name)
     arr = main_file.split("\n")
     import = "require \"vizbor\"\n" \
-             "require \"settings\"\n" \
+             "require \"./#{app_name}/settings\"\n" \
              "require \"./#{app_name}/globals/**\"\n" \
              "require \"./#{app_name}/middleware/**\"\n" \
              "require \"./#{app_name}/services/**\"\n"
