@@ -82,9 +82,10 @@ module VizborCLI
          "->  config\n" \
          "->  public\n" \
          "->  views\n" \
-         "->  src/#{app_name}/services\n" \
+         "->  src/#{app_name}/settings\n" \
+         "->  src/#{app_name}/globals\n" \
          "->  src/#{app_name}/middleware\n" \
-         "->  src/#{app_name}/spices"
+         "->  src/#{app_name}/services\n"
       .colorize.fore(:blue).mode(:bold)
     puts "2.Added Mongo driver options file -> config/mongo/options.yml"
       .colorize.fore(:blue).mode(:bold)
