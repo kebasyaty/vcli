@@ -23,7 +23,7 @@ module Vizbor::Services::Admin::Models
       default: "public/media/default/no_avatar.png",
       thumbnails: [{"xs", 32}, {"sm", 64}, {"md", 128}, {"lg", 256}],
       # NOTE: 1 MB = 1048576 Bytes (in binary).
-      maxsize: 2097152, # 2 MB
+      maxsize: 1048576, # 1 MB
     )
     getter first_name = DynFork::Fields::TextField.new(
       label: I18n.t(:first_name),
@@ -53,6 +53,7 @@ module Vizbor::Services::Admin::Models
     )
     getter confirm_password = DynFork::Fields::PasswordField.new(
       label: I18n.t(:confirm_password),
+      placeholder: I18n.t(:repeat_your_password),
       ignored: true
     )
     getter is_admin = DynFork::Fields::BoolField.new(
@@ -74,5 +75,17 @@ module Vizbor::Services::Admin::Models
       label: I18n.t(:slug),
       slug_sources: ["username"],
     )
+
+    private def add_validation : Hash(String, String)
+      error_map = Hash(String, String).new
+      # Get clean data.
+      password : String? = @password.value?
+      confirm_password : String? = @confirm_password.value?
+      # Fields validation.
+      if password != confirm_password
+        error_map["confirm_password"] = I18n.t(:pass_does_not_match)
+      end
+      error_map
+    end
   end
 end
