@@ -4,10 +4,10 @@ module Vizbor::Services::Admin::Routes
     authenticated? : Bool = false
     lang_code : String = Vizbor::Settings.default_locale
 
+    # User authentication
     if !(user = env.session.object?("user")).nil?
       user = user.as(Vizbor::Middleware::Session::UserStorableObject)
-      if !user.username.empty? &&
-         !user.hash.empty? && user.is_admin? && user.is_active?
+      if user.is_admin? && user.is_active?
         authenticated? = true
       end
     end
