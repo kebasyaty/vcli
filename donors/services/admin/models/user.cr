@@ -8,10 +8,14 @@ module Vizbor::Services::Admin::Models
       label: I18n.t(:username),
       placeholder: I18n.t(:enter_your_username),
       maxlength: 150,
-      regex: "^[a-zA-Z0-9_@.+]+$",
+      regex: "^[a-zA-Z0-9_]+$", # do not use '@' and '+' chars
       regex_err_msg: I18n.t(
+      "allowed_chars.interpolation",
+      chars: "a-z A-Z 0-9 _"
+    ),
+      hint: I18n.t(
         "allowed_chars.interpolation",
-        chars: "a-z A-Z 0-9 _ @ . +"
+        chars: "a-z A-Z 0-9 _"
       ),
       required: true,
       unique: true
@@ -45,6 +49,7 @@ module Vizbor::Services::Admin::Models
     getter phone = DynFork::Fields::PhoneField.new(
       label: I18n.t(:phone_number),
       placeholder: I18n.t(:enter_your_phone_number),
+      unique: true,
     )
     getter password = DynFork::Fields::PasswordField.new(
       label: I18n.t(:password),
@@ -76,6 +81,7 @@ module Vizbor::Services::Admin::Models
       slug_sources: ["username"],
     )
 
+    # Additional validation
     private def add_validation : Hash(String, String)
       error_map = Hash(String, String).new
       # Get clean data.
@@ -86,6 +92,17 @@ module Vizbor::Services::Admin::Models
         error_map["confirm_password"] = I18n.t(:pass_does_not_match)
       end
       error_map
+    end
+
+    def self.indexing
+      self.create_index(
+        keys: {
+          "username": 1,
+        },
+        options: {
+          name: "usernameIdx",
+        }
+      )
     end
   end
 end
