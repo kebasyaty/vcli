@@ -1,6 +1,7 @@
 # Russian
 #
 ru:
+  # DynFork
   invalid_color_code: "Неправильный цветовой код."
   allowed_chars:
     interpolation: "Допустимые символы: %{chars}"
@@ -53,6 +54,7 @@ ru:
   forbidden_saving: "Запрещено сохранять!"
   forbidden_updating: "Запрещено обновлять!"
   forbidden_deleting: "Запрещено удалять!"
+  # Vizbor
   auth_failed: "Аутентификация не удалась."
   username: "Имя пользователя"
   enter_your_username: "Введите имя пользователя"
@@ -70,6 +72,7 @@ ru:
   password: "Пароль"
   enter_your_password: "Введите ваш пароль"
   confirm_password: "Повторите пароль"
+  repeat_your_password: "Повторите свой пароль"
   is_admin: "администратор?"
   can_this_user_access_admin_panel: "Может ли этот пользователь получить доступ к панели администратора?"
   is_active: "активен?"

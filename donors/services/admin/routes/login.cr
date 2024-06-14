@@ -1,7 +1,8 @@
 module Vizbor::Services::Admin::Routes
   # Login page
   get "/admin/sign-in" do |env|
-    if env.session.object?("user").nil?
+    auth = Vizbor::Globals::Auth.user_authenticated? env, is_admin?: true
+    if !auth[:authenticated?]
       if Vizbor::Services::Admin::Models::User.estimated_document_count == 0
         # Create first user (administrator)
         first_user = Vizbor::Services::Admin::Models::User.new
@@ -34,46 +35,27 @@ module Vizbor::Services::Admin::Routes
 
   # Login
   post "/admin/login" do |env|
-    authenticated? : Bool = false
-    lang_code : String = Vizbor::Settings.default_locale
-    username : String = env.params.json["username"].as(String)
+    lang_code : String = env.session.string("current_lang")
+    auth = Vizbor::Globals::Auth.user_authenticated? env, is_admin?: true
+    authenticated? : Bool = auth[:authenticated?]
+    # Login form data
+    login : String = env.params.json["login"].as(String) # username or email
     password : String = env.params.json["password"].as(String)
 
-    if !(user = env.session.object?("user")).nil?
-      user = user.as(Vizbor::Middleware::Session::UserStorableObject)
-      if username == user.username && user.is_admin? && user.is_active?
-        authenticated? = true
-      end
-    else
-      # Get user from database
-      filter = {username: username, is_admin: true, is_active: true}
-      if user = Vizbor::Services::Admin::Models::User.find_one_to_instance(filter)
-        # User password verification
-        if user.verify_password?(password)
-          # Update last visit date
-          user.last_login.refrash_val_datetime(Time.utc)
-          if user.save
-            authenticated? = true
-          else
-            user.print_err
-          end
-          # Add user details to session
-          uso = Vizbor::Middleware::Session::UserStorableObject.new(
-            hash: user.hash.value,
-            username: user.username.value,
-            email: user.email.value,
-            is_admin: user.is_admin.value,
-            is_active: user.is_active.value,
-          )
-          env.session.object("user", uso)
-        end
-      end
+    # Check if the user is authenticated?
+    unless authenticated?
+      auth = Vizbor::Globals::Auth.user_authentication(
+        env,
+        login: login,
+        password: password,
+        is_admin?: true,
+      )
+      authenticated? = auth[:authenticated?]
     end
 
     result : String? = nil
     I18n.with_locale(lang_code) do
       result = {
-        username:         username,
         is_authenticated: authenticated?,
         msg_err:          authenticated? ? "" : I18n.t(:auth_failed),
       }.to_json

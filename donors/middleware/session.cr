@@ -1,5 +1,5 @@
 # https://kemalcr.com/guide/#middleware
-module Vizbor::Middleware::Session
+module Vizbor::Middleware
   # Session Configuration.
   # https://github.com/kemalcr/kemal-session
   Kemal::Session.config do |config|
@@ -23,23 +23,15 @@ module Vizbor::Middleware::Session
     config.samesite = HTTP::Cookie::SameSite::Lax
   end
 
-  # To store user data in a session.
-  class UserStorableObject
-    include JSON::Serializable
-    include Kemal::Session::StorableObject
-
-    getter hash : String
-    getter username : String
-    getter email : String
-    getter? is_admin : Bool
-    getter? is_active : Bool
-
-    def initialize(
-      @hash : String,
-      @username : String,
-      @email : String,
-      @is_admin : Bool,
-      @is_active : Bool
-    ); end
+  # Add the current language code to the session.
+  class CurrentLang < Kemal::Handler
+    def call(env)
+      if env.session.string?("current_lang").nil?
+        env.session.string("current_lang", Vizbor::Settings.default_locale)
+      end
+      call_next env
+    end
   end
+
+  add_handler CurrentLang.new
 end
