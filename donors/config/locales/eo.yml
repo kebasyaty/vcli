@@ -103,4 +103,7 @@ eo:
   enter_meta_title: "Enigu meta-title"
   enter_meta_description: "Enigu meta-description"
   site_parameters: "Retejaj Parametroj"
-  parameters: "Parametroj"
+  basic_settings: "Bazaj Agordoj"
+  home_page_settings: "Hejmpaĝo Agordoj"
+  max_size:
+    interpolation: "Maksimuma grandeco: %{size}"
