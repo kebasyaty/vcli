@@ -9,9 +9,10 @@ module VizborCLI::Donors
       "lib/vcli/donors/config"     => "config",
       "lib/vcli/donors/public"     => "public",
       "lib/vcli/donors/views"      => "views",
-      "lib/vcli/donors/services"   => "src/#{app_name}/services",
+      "lib/vcli/donors/globals"    => "src/#{app_name}/globals",
       "lib/vcli/donors/middleware" => "src/#{app_name}/middleware",
-      "lib/vcli/donors/spices"     => "src/#{app_name}/spices",
+      "lib/vcli/donors/renderer"   => "src/#{app_name}/renderer",
+      "lib/vcli/donors/services"   => "src/#{app_name}/services",
     }
 
     path = Path.new("src/#{app_name}")

@@ -8,7 +8,7 @@ module Vizbor::Services::Admin::Models
       label: I18n.t(:username),
       placeholder: I18n.t(:enter_your_username),
       maxlength: 150,
-      regex: "^[a-zA-Z0-9_]+$", # do not use '@' and '+' chars
+      regex: "^[a-zA-Z0-9_]+$", # do not use `.` and `+` chars
       regex_err_msg: I18n.t(
       "allowed_chars.interpolation",
       chars: "a-z A-Z 0-9 _"
@@ -28,6 +28,10 @@ module Vizbor::Services::Admin::Models
       thumbnails: [{"xs", 32}, {"sm", 64}, {"md", 128}, {"lg", 256}],
       # NOTE: 1 MB = 1048576 Bytes (in binary).
       maxsize: 1048576, # 1 MB
+      hint: I18n.t(
+      "max_size.interpolation",
+      size: "1 MB"
+    ),
     )
     getter first_name = DynFork::Fields::TextField.new(
       label: I18n.t(:first_name),
@@ -81,7 +85,7 @@ module Vizbor::Services::Admin::Models
       slug_sources: ["username"],
     )
 
-    # Additional validation
+    # Additional validation (starts automatically)
     private def add_validation : Hash(String, String)
       error_map = Hash(String, String).new
       # Get clean data.
@@ -94,15 +98,18 @@ module Vizbor::Services::Admin::Models
       error_map
     end
 
+    # Run indexing (starts automatically)
     def self.indexing
-      self.create_index(
-        keys: {
-          "username": 1,
+      self.create_indexes([
+        {
+          keys:    {"username": 1},
+          options: {name: "username_Idx"},
         },
-        options: {
-          name: "usernameIdx",
-        }
-      )
+        {
+          keys:    {"email": 1},
+          options: {name: "email_Idx"},
+        },
+      ])
     end
   end
 end
