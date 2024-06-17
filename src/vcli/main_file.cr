@@ -10,7 +10,7 @@ module VizborCLI::MainFile
              "require \"./#{app_name}/settings\"\n" \
              "require \"./#{app_name}/globals/**\"\n" \
              "require \"./#{app_name}/middleware/**\"\n" \
-             "require \"./#{app_name}/renderer/**\"\n" \
+             "require \"./#{app_name}/render/**\"\n" \
              "require \"./#{app_name}/services/**\"\n"
     arr[0] = import
     arr[4] = "  Vizbor::WebServer.run"
