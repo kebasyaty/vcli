@@ -12,7 +12,7 @@ module VizborCLI::Donors
       "lib/vcli/donors/services"   => "src/#{app_name}/services",
       "lib/vcli/donors/middleware" => "src/#{app_name}/middleware",
       "lib/vcli/donors/renderer"   => "src/#{app_name}/renderer",
-      "lib/vcli/donors/spices"     => "src/#{app_name}/spices",
+      "lib/vcli/donors/services"   => "src/#{app_name}/services",
     }
 
     path = Path.new("src/#{app_name}")
