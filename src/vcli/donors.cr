@@ -11,7 +11,7 @@ module VizborCLI::Donors
       "lib/vcli/donors/views"      => "views",
       "lib/vcli/donors/globals"    => "src/#{app_name}/globals",
       "lib/vcli/donors/middleware" => "src/#{app_name}/middleware",
-      "lib/vcli/donors/renderer"   => "src/#{app_name}/renderer",
+      "lib/vcli/donors/render"     => "src/#{app_name}/render",
       "lib/vcli/donors/services"   => "src/#{app_name}/services",
     }
 

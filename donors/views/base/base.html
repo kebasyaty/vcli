@@ -16,9 +16,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"
     />
-    <% styles.each do |path| %>
+    <%- styles.each do |path| -%>
     <link rel="stylesheet" type="text/css" href="<%= path %>" />
-    <% end %>
+    <%- end -%>
     <!--END VENDOR STYLES-->
   </head>
 
@@ -30,24 +30,16 @@
       >
     </noscript>
 
-    <header>
-      <h1><%= brand %></h1>
-      <h2><%= slogan %></h2>
-      <h4><%= contact_email %></h4>
-      <h4><%= contact_phone %></h4>
-    </header>
+    <header><%= header %></header>
 
     <main><%= content %></main>
 
-    <footer>
-      <span>&#169;&#160;</span>
-      <span>copyright</span>
-    </footer>
+    <footer><%= footer %></footer>
 
     <!--START VENDOR SCRIPTS-->
-    <% scripts.each do |path| %>
+    <%- scripts.each do |path| -%>
     <script type="text/javascript" src="<%= path %>"></script>
-    <% end %>
+    <%- end -%>
     <!--END VENDOR SCRIPTS-->
   </body>
 </html>
