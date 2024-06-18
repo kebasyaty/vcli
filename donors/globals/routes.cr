@@ -4,21 +4,47 @@ module Vizbor::Globals::Routes
   end
 
   get "/robots.txt" do |env|
-    _host = "#{Vizbor::Settings.host}:#{Vizbor::Settings.port}"
-    _scheme = Vizbor::Settings.scheme
     env.response.content_type = "text/plain"
-    render "views/robots.txt.ecr"
+    Vizbor::Render.robots(
+      host: Vizbor::Settings.host,
+      scheme: Vizbor::Settings.scheme,
+    )
   end
 
   get "/sitemap.xml" do |env|
-    _items : Array(NamedTuple(
-      loc: String,
-      lastmod: String,
-      changefreq: String,
-      priority: Float64,
-    )) = [{loc: "test_loc", lastmod: "test_lastmod", changefreq: "test_changefreq", priority: 0.5}]
     env.response.content_type = "application/xml"
-    render "views/sitemap.xml.ecr"
+    Vizbor::Render.sitemap(
+      items: [{loc: "test_loc", lastmod: "test_lastmod", changefreq: "test_changefreq", priority: 0.5}],
+    )
+  end
+
+  # Change current language
+  get "/change-current-lang/:lang_code" do |env|
+    lang_code = env.params.url["lang_code"]
+    env.session.string("current_lang", lang_code)
+    env.redirect "/"
+  end
+
+  # Login
+  post "/login" do |env|
+    auth = Vizbor::Globals::Auth.user_authenticated? env
+    unless auth[:authenticated?]
+      Vizbor::Globals::Auth.user_authentication(
+        env,
+        login: env.params.json["login"].as(String), # username or email
+        password: env.params.json["password"].as(String),
+      )
+    end
+    env.redirect "/"
+  end
+
+  # Logout
+  post "/logout" do |env|
+    auth = Vizbor::Globals::Auth.user_authenticated? env
+    if auth[:authenticated?]
+      env.session.destroy
+    end
+    env.redirect "/"
   end
 
   error 404 do |env|

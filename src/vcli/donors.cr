@@ -8,7 +8,7 @@ module VizborCLI::Donors
       "lib/vcli/donors/vscode"     => ".vscode",
       "lib/vcli/donors/config"     => "config",
       "lib/vcli/donors/public"     => "public",
-      "lib/vcli/donors/views"      => "views",
+      "lib/vcli/donors/templates"  => "templates",
       "lib/vcli/donors/globals"    => "src/#{app_name}/globals",
       "lib/vcli/donors/middleware" => "src/#{app_name}/middleware",
       "lib/vcli/donors/render"     => "src/#{app_name}/render",

@@ -81,7 +81,7 @@ module VizborCLI
          "-> .vscode\n" \
          "->  config\n" \
          "->  public\n" \
-         "->  views\n" \
+         "->  templates\n" \
          "->  src/#{app_name}/globals\n" \
          "->  src/#{app_name}/middleware\n" \
          "->  src/#{app_name}/render\n" \
