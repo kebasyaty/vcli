@@ -17,10 +17,9 @@ module Vizbor::Middleware
       "Strict-Transport-Security",
       !Vizbor::Settings.debug? ? "max-age=31536000; includeSubDomains; preload" : "max-age=0",
     )
-    response.headers.add("Referrer-Policy", "strict-origin-when-cross-origin")
+    response.headers.add("Referrer-Policy", !Vizbor::Settings.debug? ? "strict-origin-when-cross-origin" : "unsafe-url")
     response.headers.add(
       "Content-Security-Policy",
-      "Content-Security-Policy" \
       "default-src 'self';" \
       " connect-src 'self' ws: http%{s}:;" \
       " font-src 'self' data: 'unsafe-inline' http%{s}:;" \
