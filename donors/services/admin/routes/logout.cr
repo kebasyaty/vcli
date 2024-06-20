@@ -1,8 +1,9 @@
-module Vizbor::Services::Admin::Routes
+module Services::Admin::Routes
   # Logout
   post "/admin/logout" do |env|
-    auth = Vizbor::Globals::Auth.user_authenticated? env, is_admin?: true
-    if auth[:authenticated?]
+    lang_code : String = env.session.string("current_lang")
+    auth = Globals::Auth.user_authenticated? env, lang_code
+    if auth[:is_authenticated]
       env.session.destroy
     end
     result = {
