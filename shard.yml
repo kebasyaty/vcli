@@ -22,10 +22,12 @@ documentation: https://kebasyaty.github.io/vcli/
 dependencies:
   cryomongo:
     github: elbywan/cryomongo
+    version: ~> 0.3.11
 
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
+    version: ~> 1.6.1
 
 scripts:
   postinstall: shards build --release
