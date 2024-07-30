@@ -1,4 +1,4 @@
-module Renders
+module Globals::Renders
   extend self
 
   def sitemap(
@@ -9,6 +9,6 @@ module Renders
       priority: Float64,
     ))
   ) : String
-    ECR.render "templates/sitemap.xml.ecr"
+    ECR.render "templates/sitemap.xml"
   end
 end
