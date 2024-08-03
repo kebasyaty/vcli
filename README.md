@@ -45,10 +45,10 @@ Return:
 --init APP_NAME                  Initialize project
 --add NAME                       Add a new service
 --delete NAME                    Delete service
---restore TOKEN                  Restore access to admin panel
+--restore LOGIN                  Restore access to admin panel
 ```
 
-`TOKEN - username or email`
+`LOGIN - username or email`
 
 ## Contributing
 
