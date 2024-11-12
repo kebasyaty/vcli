@@ -44,13 +44,19 @@ module Vizbor::Settings
   # WARNING: Minimum 64 characters.
   class_getter secret_key : String = "#{Random::Secure.hex(64)}"
 
-  # Administrator production email.
+  # The default administrator e -mail, for production.
   # WARNING: Maximum 320 characters.
   class_getter admin_prod_email = "???"
-  # Administrator production password.
-  # WARNING: Default number of characters: max = 256, min = 8
+  # The default administrator e -mail, for development.
+  # WARNING: Maximum 320 characters.
+  class_getter admin_dev_email = "no_reply@email.net"
+  # The default administrator password, for production.
+  # WARNING: Number of characters: max=256, min=8.
   # NOTE: To generate a key (This is not an advertisement): https://randompasswordgen.com/
   class_getter admin_prod_pass = "???"
+  # The default administrator password, for development.
+  # WARNING: Number of characters: max=256, min=8.
+  class_getter admin_dev_pass = "12345678"
 
   # URI Scheme
   def scheme : String
@@ -69,7 +75,7 @@ module Vizbor::Settings
   # URI Host - Domain name
   def host : String
     if !@@debug
-      "www.your-site-name.net"
+      "www.your-domain-name.net" # <----------- Replace with your production URI
     else
       "localhost" + ":" + port.to_s
     end
