@@ -32,8 +32,8 @@ module Vizbor::Settings
   class_getter? debug : Bool = true
   # WARNING: Maximum 60 characters.
   # WARNING: Match regular expression: /^[a-zA-Z][-_a-zA-Z0-9]{0,59}$/
-  # NOTE: Format for development and tests: test_<key>
-  # NOTE: To generate a key (This is not an advertisement): https://randompasswordgen.com/
+  # NOTE: Not a mandatory format for development and tests: `test_<key>`
+  # NOTE: To generate a `<key>` (This is not an advertisement): https://randompasswordgen.com/
   class_getter database_name : String = "test_#{generate_unique_key}"
   # NOTE: https://github.com/crystal-i18n/i18n
   class_getter default_locale : String = "en"
@@ -65,20 +65,15 @@ module Vizbor::Settings
     3000
   end
 
-  # URI Host - Domain name
+  # URI Host
   def host : String
-    if !@@debug
-      "www.your-domain-name.net" # <------------------------------------ replace
-    else
-      "localhost" + ":" + port.to_s
-    end
+    # "www.your-domain-name.net" <-------------------------------------- replace
+    !@@debug ? "www.your-domain-name.net" : "localhost:" + port.to_s
   end
 
   # Application URL
   def app_url : String
-    url : String = scheme + "://" + host
-    url += ":" + port.to_s if @@debug
-    url
+    "%{s}://%{h}" % {s: scheme, h: host}
   end
 end
 )
