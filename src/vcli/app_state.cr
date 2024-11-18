@@ -73,7 +73,7 @@ module Vizbor::Settings
 
   # Application URL
   def app_url : String
-    "%{s}://%{h}%{p}" % {s: scheme, h: host, p: !@@debug ? "" : ":" + port.to_s}
+    "%{s}://%{h}" % {s: scheme, h: host}
   end
 end
 )
