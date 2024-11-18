@@ -32,8 +32,8 @@ module Vizbor::Settings
   class_getter? debug : Bool = true
   # WARNING: Maximum 60 characters.
   # WARNING: Match regular expression: /^[a-zA-Z][-_a-zA-Z0-9]{0,59}$/
-  # NOTE: Format for development and tests: test_<key>
-  # NOTE: To generate a key (This is not an advertisement): https://randompasswordgen.com/
+  # NOTE: Not a mandatory format for development and tests: `test_<key>`
+  # NOTE: To generate a `<key>` (This is not an advertisement): https://randompasswordgen.com/
   class_getter database_name : String = "test_#{generate_unique_key}"
   # NOTE: https://github.com/crystal-i18n/i18n
   class_getter default_locale : String = "en"
